@@ -1,0 +1,45 @@
+{
+  "name": "@enercity-ag/whisper-check",
+  "version": "automatically set by release workflow",
+  "description": "WhisperCheck is an command-line based utility for ThunderClient",
+  "main": "src/index.js",
+  "scripts": {
+    "convert": "node index.js convert \"./demo-data/tc_col_fulltest.json\" \"./demo-data/collection.json\"",
+    "check": "node index.js check \"./demo-data/collection.json\" --envFile \"./demo-data/collection.json\" ",
+    "check:multiple": "node index.js check \"./demo-data/collection.json\" --envFile \"./demo-data/environment.json\" --multiple-choice"
+  },
+  "bin": {
+    "whisper-check": "index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/enercity-ag/whisper-client.git"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/"
+  },
+  "dependencies": {
+    "axios": "^1.6.7",
+    "envfile": "^7.1.0",
+    "form-data": "^4.0.0",
+    "handlebars": "^4.7.8",
+    "inquirer": "^9.2.15",
+    "install": "^0.13.0",
+    "yargs": "^17.7.2"
+  },
+  "type": "module",
+  "license": "MIT",
+  "author": {
+    "name": "enercity AG"
+  },
+  "contributors": [
+    {
+      "name": "Bastian Kluge",
+      "url": "https://github.com/bastian-41"
+    },
+    {
+      "name": "Jan Hartje",
+      "url": "https://github.com/janhartje"
+    }
+  ]
+}

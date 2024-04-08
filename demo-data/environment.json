@@ -1,0 +1,12 @@
+{
+  "local": {
+    "baseurl": "http://localhost:3010",
+    "basepath": "/my-api",
+    "x-api-key": "{{X_API_KEY_LOCAL}}"
+  },
+  "dev": {
+    "baseurl": "https://apiserver.of.your.choice",
+    "basepath": "/my-api",
+    "x-api-key": "{{X_API_KEY_DEV}}"
+  }
+}

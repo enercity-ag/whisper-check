@@ -1,0 +1,6 @@
+{
+  "formId": "test-send-mail-attachments",
+  "formFields": {
+    "email": "set-you-own-address@whatever.domain"
+  }
+}

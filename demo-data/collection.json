@@ -1,0 +1,915 @@
+[
+  {
+    "name": "test-send-mail-form",
+    "method": "POST",
+    "url": "{{baseurl}}{{basepath}}/record",
+    "headers": {},
+    "tests": [
+      {
+        "type": "set-env-var",
+        "custom": "json.id",
+        "action": "setto",
+        "value": "{{testSendMailFromLastRecord, local}}"
+      },
+      {
+        "type": "res-code",
+        "custom": "",
+        "action": "equal",
+        "value": "200"
+      }
+    ],
+    "body": {
+      "type": "json",
+      "data": {
+        "formId": "test-send-mail-form",
+        "formFields": {
+          "email": "{{TEST_RECIPIENT}}"
+        }
+      },
+      "form": []
+    }
+  },
+  {
+    "name": "test-send-mail-double-opt-in",
+    "method": "POST",
+    "url": "{{baseurl}}{{basepath}}/record",
+    "headers": {},
+    "tests": [
+      {
+        "type": "set-env-var",
+        "custom": "json.id",
+        "action": "setto",
+        "value": "{{testSendMailDoubleOptInLastRecord, local}}"
+      },
+      {
+        "type": "res-code",
+        "custom": "",
+        "action": "equal",
+        "value": "200"
+      }
+    ],
+    "body": {
+      "type": "json",
+      "data": {
+        "formId": "test-send-mail-double-opt-in",
+        "formFields": {
+          "email": "{{TEST_RECIPIENT}}"
+        }
+      },
+      "form": []
+    }
+  },
+  {
+    "name": "test-send-mail-form-magnolia-template",
+    "method": "POST",
+    "url": "{{baseurl}}{{basepath}}/record",
+    "headers": {},
+    "tests": [
+      {
+        "type": "set-env-var",
+        "custom": "json.id",
+        "action": "setto",
+        "value": "{{testSendMailFormMagnoliaTemplateLastRecord, local}}"
+      },
+      {
+        "type": "res-code",
+        "custom": "",
+        "action": "equal",
+        "value": "200"
+      }
+    ],
+    "body": {
+      "type": "json",
+      "data": {
+        "formId": "test-send-mail-form-magnolia-template",
+        "formFields": {
+          "email": "{{TEST_RECIPIENT}}",
+          "form-api-stage": "{{stage}}"
+        }
+      },
+      "form": []
+    }
+  },
+  {
+    "name": "test-required-fields-negative-test",
+    "method": "POST",
+    "url": "{{baseurl}}{{basepath}}/record",
+    "headers": {},
+    "tests": [
+      {
+        "type": "res-code",
+        "custom": "",
+        "action": "equal",
+        "value": "400"
+      }
+    ],
+    "body": {
+      "type": "json",
+      "data": {
+        "formId": "test-required-fields",
+        "formFields": {
+          "döner": "{{TEST_RECIPIENT}}"
+        }
+      },
+      "form": []
+    }
+  },
+  {
+    "name": "test-required-fields-positive-test",
+    "method": "POST",
+    "url": "{{baseurl}}{{basepath}}/record",
+    "headers": {},
+    "tests": [
+      {
+        "type": "set-env-var",
+        "custom": "json.id",
+        "action": "setto",
+        "value": "{{lastRecord,local}}"
+      },
+      {
+        "type": "res-code",
+        "custom": "",
+        "action": "equal",
+        "value": "200"
+      }
+    ],
+    "body": {
+      "type": "json",
+      "data": {
+        "formId": "test-required-fields",
+        "formFields": {
+          "required": "tretsets",
+          "required2": true
+        }
+      },
+      "form": []
+    }
+  },
+  {
+    "name": "test-delete-record",
+    "method": "POST",
+    "url": "{{baseurl}}{{basepath}}/record",
+    "headers": {},
+    "tests": [
+      {
+        "type": "set-env-var",
+        "custom": "json.id",
+        "action": "setto",
+        "value": "{{testDeleteLastRecord,local}}"
+      },
+      {
+        "type": "res-code",
+        "custom": "",
+        "action": "equal",
+        "value": "200"
+      }
+    ],
+    "body": {
+      "type": "json",
+      "data": {
+        "formId": "test-delete-record",
+        "formFields": {
+          "test": "testdata"
+        }
+      },
+      "form": []
+    }
+  },
+  {
+    "name": "test-modify-data",
+    "method": "POST",
+    "url": "{{baseurl}}{{basepath}}/record",
+    "headers": {},
+    "tests": [
+      {
+        "type": "set-env-var",
+        "custom": "json.id",
+        "action": "setto",
+        "value": "{{testModifyDataRastRecord, local}}"
+      },
+      {
+        "type": "res-code",
+        "custom": "",
+        "action": "equal",
+        "value": "200"
+      }
+    ],
+    "body": {
+      "type": "json",
+      "data": {
+        "formId": "test-modify-data",
+        "formFields": {
+          "test": "testdata"
+        }
+      },
+      "form": []
+    }
+  },
+  {
+    "name": "test-get-records-by-form-and-masterkey-a",
+    "method": "POST",
+    "url": "{{baseurl}}{{basepath}}/record",
+    "headers": {},
+    "tests": [
+      {
+        "type": "set-env-var",
+        "custom": "json.id",
+        "action": "setto",
+        "value": "{{lastRecord,local}}"
+      },
+      {
+        "type": "res-code",
+        "custom": "",
+        "action": "equal",
+        "value": "200"
+      }
+    ],
+    "body": {
+      "type": "json",
+      "data": {
+        "formId": "test-get-records-by-form-and-masterkey",
+        "formFields": {
+          "email": "{{TEST_RECIPIENT}}"
+        }
+      },
+      "form": []
+    }
+  },
+  {
+    "name": "test-get-records-by-form-and-masterkey-b",
+    "method": "POST",
+    "url": "{{baseurl}}{{basepath}}/record",
+    "headers": {},
+    "tests": [
+      {
+        "type": "set-env-var",
+        "custom": "json.id",
+        "action": "setto",
+        "value": "{{lastRecord,local}}"
+      },
+      {
+        "type": "res-code",
+        "custom": "",
+        "action": "equal",
+        "value": "200"
+      }
+    ],
+    "body": {
+      "type": "json",
+      "data": {
+        "formId": "test-get-records-by-form-and-masterkey",
+        "formFields": {
+          "email": "{{TEST_RECIPIENT}}",
+          "house": "Plattenbau",
+          "roofTop": "not Needed"
+        }
+      },
+      "form": []
+    }
+  },
+  {
+    "name": "test-send-mail-pre-compiled-template-confirmation",
+    "method": "POST",
+    "url": "{{baseurl}}{{basepath}}/record",
+    "headers": {},
+    "tests": [
+      {
+        "type": "res-code",
+        "custom": "",
+        "action": "equal",
+        "value": "200"
+      },
+      {
+        "type": "set-env-var",
+        "custom": "json.id",
+        "action": "setto",
+        "value": "{{lastRecord,local}}"
+      }
+    ],
+    "body": {
+      "type": "json",
+      "data": {
+        "formId": "test-send-mail-pre-compiled-template",
+        "formFields": {
+          "email": "{{TEST_RECIPIENT}}",
+          "templateType": "confirmation",
+          "subject": "confirmation"
+        }
+      },
+      "form": []
+    }
+  },
+  {
+    "name": "test-send-mail-pre-compiled-template-deregistered",
+    "method": "POST",
+    "url": "{{baseurl}}{{basepath}}/record",
+    "headers": {},
+    "tests": [
+      {
+        "type": "res-code",
+        "custom": "",
+        "action": "equal",
+        "value": "200"
+      },
+      {
+        "type": "set-env-var",
+        "custom": "json.id",
+        "action": "setto",
+        "value": "{{lastRecord,local}}"
+      }
+    ],
+    "body": {
+      "type": "json",
+      "data": {
+        "formId": "test-send-mail-pre-compiled-template",
+        "formFields": {
+          "email": "{{TEST_RECIPIENT}}",
+          "templateType": "deregistered",
+          "subject": "deregistered"
+        }
+      },
+      "form": []
+    }
+  },
+  {
+    "name": "test-send-mail-pre-compiled-template-doubleOptIn",
+    "method": "POST",
+    "url": "{{baseurl}}{{basepath}}/record",
+    "headers": {},
+    "tests": [
+      {
+        "type": "res-code",
+        "custom": "",
+        "action": "equal",
+        "value": "200"
+      },
+      {
+        "type": "set-env-var",
+        "custom": "json.id",
+        "action": "setto",
+        "value": "{{lastRecord,local}}"
+      }
+    ],
+    "body": {
+      "type": "json",
+      "data": {
+        "formId": "test-send-mail-pre-compiled-template",
+        "formFields": {
+          "email": "{{TEST_RECIPIENT}}",
+          "templateType": "doubleOptIn",
+          "subject": "doubleOptIn",
+          "generateTriggerLink": true
+        }
+      },
+      "form": []
+    }
+  },
+  {
+    "name": "test-send-mail-pre-compiled-template-newJobs",
+    "method": "POST",
+    "url": "{{baseurl}}{{basepath}}/record",
+    "headers": {},
+    "tests": [
+      {
+        "type": "res-code",
+        "custom": "",
+        "action": "equal",
+        "value": "200"
+      },
+      {
+        "type": "set-env-var",
+        "custom": "json.id",
+        "action": "setto",
+        "value": "{{lastRecord,local}}"
+      }
+    ],
+    "body": {
+      "type": "json",
+      "data": {
+        "formId": "test-send-mail-pre-compiled-template",
+        "formFields": {
+          "email": "{{TEST_RECIPIENT}}",
+          "templateType": "newJobs",
+          "subject": "newJobs"
+        }
+      },
+      "form": []
+    }
+  },
+  {
+    "name": "test-send-mail-template-newjobs",
+    "method": "POST",
+    "url": "{{baseurl}}{{basepath}}/record",
+    "headers": {},
+    "tests": [
+      {
+        "type": "res-code",
+        "custom": "",
+        "action": "equal",
+        "value": "200"
+      },
+      {
+        "type": "set-env-var",
+        "custom": "json.id",
+        "action": "setto",
+        "value": "{{lastRecord,local}}"
+      }
+    ],
+    "body": {
+      "type": "json",
+      "data": {
+        "formId": "test-send-mail-template",
+        "formFields": {
+          "project": "enercity",
+          "subject": "enercity Job-Alarm - Wir haben neue Jobs für dich!",
+          "headerTitle": "Wir haben neue Jobs für dich!",
+          "buttonText": "Zu unseren Bewerbungstipps",
+          "buttonLink": "https://www.enercity.de/karriere/jobsuche/bewerbungstipps",
+          "headerIconSrc": "https://www.enercity.de/assets/cms/Email-Templates/EmailIconBell.png",
+          "deleteDate": "23.12.2022",
+          "editLink": "https://enercity.de/karriere/jobsuche?email=noel%40neoskop.de&categories=Auszubildende&timeType=full-time&token=4bf71182f9bf592fa9bb26650d591602e7926bfb29de0112ebd42c565534d4f6",
+          "unsubscribeLink": "https://www.enercity.de/abmelden?type=job-alertemail=noel%40neoskop.de&token=4bf71182f9bf592fa9bb26650d591602e7926bfb29de0112ebd42c565534d4f6",
+          "jobs": [
+            {
+              "title": "Ausbildung Elektroniker für Automatisierungstechnik 2023 *",
+              "category": "Auszubildende",
+              "location": "Hannover",
+              "url": "https://www.enercity.de/enercity/karriere/jobsuche/ausbildung-elektroniker-fuer-automatisierungstechnik-2023-J2022059"
+            },
+            {
+              "title": "Ausbildung Industriemechaniker 2023 *",
+              "category": "Auszubildende",
+              "location": "Hannover",
+              "url": "https://www.enercity.de/enercity/karriere/jobsuche/ausbildung-industriemechaniker-2023-J2022058"
+            },
+            {
+              "title": "Ausbildung Elektroniker für Betriebstechnik 2023 *",
+              "category": "Auszubildende",
+              "location": "Hannover",
+              "url": "https://www.enercity.de/enercity/karriere/jobsuche/ausbildung-elektroniker-fuer-betriebstechnik-2023-J2022060"
+            },
+            {
+              "title": "Duales Studium Elektrotechnik & Informationstechnik (B.Eng.) 2023 *",
+              "category": "Auszubildende",
+              "location": "Hannover",
+              "url": "https://www.enercity.de/enercity/karriere/jobsuche/duales-studium-elektrotechnik-informationstechnik-b-eng-2023-J2022061"
+            },
+            {
+              "title": "Ausbildung Anlagenmechaniker 2023 *",
+              "category": "Auszubildende",
+              "location": "Hannover",
+              "url": "https://www.enercity.de/enercity/karriere/jobsuche/ausbildung-anlagenmechaniker-2023-J2022056"
+            },
+            {
+              "title": "Duales Studium Betriebswirtschaftslehre (B.A.) 2023 *",
+              "category": "Auszubildende",
+              "location": "Hannover",
+              "url": "https://www.enercity.de/enercity/karriere/jobsuche/duales-studium-betriebswirtschaftslehre-b-a-2023-J2022054"
+            },
+            {
+              "title": "Ausbildung Industriekaufmann 2023 *",
+              "category": "Auszubildende",
+              "location": "Hannover",
+              "url": "https://www.enercity.de/enercity/karriere/jobsuche/ausbildung-industriekaufmann-2023-J2022053"
+            },
+            {
+              "title": "Duales Studium Wirtschaftsinformatik (B.Sc.) 2023 *",
+              "category": "Auszubildende",
+              "location": "Hannover",
+              "url": "https://www.enercity.de/enercity/karriere/jobsuche/duales-studium-wirtschaftsinformatik-b-sc-2023-J2022055"
+            },
+            {
+              "title": "Wasserrutschen-Tester",
+              "category": "Auszubildende",
+              "location": "Weltweit",
+              "url": "https://www.enercity.de/enercity/karriere/jobsuche/neoskop"
+            }
+          ],
+          "email": "{{TEST_RECIPIENT}}",
+          "date_created": "2022-06-23T12:47:53.000Z",
+          "date_updated": "2022-06-23T13:32:07.000Z",
+          "token": "4bf71182f9bf592fa9bb26650d591602e7926bfb29de0112ebd42c565534d4f6",
+          "categories": [
+            "auszubildende"
+          ],
+          "time_type": [
+            "full-time"
+          ]
+        },
+        "controlFields": {
+          "project": "jobAlert",
+          "templateType": "newJobs",
+          "endpointSecret": "djioufkds8j67G&HJG(/JK739zjk912khUZKGZ/GJFA(G"
+        }
+      },
+      "form": []
+    }
+  },
+  {
+    "name": "test-send-mail-template",
+    "method": "POST",
+    "url": "{{baseurl}}{{basepath}}/record",
+    "headers": {},
+    "tests": [
+      {
+        "type": "res-code",
+        "custom": "",
+        "action": "equal",
+        "value": "200"
+      },
+      {
+        "type": "set-env-var",
+        "custom": "json.id",
+        "action": "setto",
+        "value": "{{lastRecord,local}}"
+      }
+    ],
+    "body": {
+      "type": "json",
+      "data": {
+        "formId": "test-send-mail-template",
+        "formFields": {
+          "subject": "enercity Job-Alarm - Wir haben neue Jobs für dich!",
+          "email": "{{TEST_RECIPIENT}}"
+        },
+        "controlFields": {
+          "project": "jobAlert",
+          "templateType": "newJobs",
+          "endpointSecret": "djioufkds8j67G&HJG(/JK739zjk912khUZKGZ/GJFA(G"
+        }
+      },
+      "form": []
+    }
+  },
+  {
+    "name": "test-send-mail-attachments-with-body-as-field",
+    "method": "POST",
+    "url": "{{baseurl}}{{basepath}}/record",
+    "headers": {},
+    "tests": [
+      {
+        "type": "res-code",
+        "custom": "",
+        "action": "equal",
+        "value": "200"
+      },
+      {
+        "type": "set-env-var",
+        "custom": "json.id",
+        "action": "setto",
+        "value": "{{lastRecord,local}}"
+      }
+    ],
+    "body": {
+      "type": "formdata",
+      "form": [
+        {
+          "name": "body",
+          "value": "{ \"formId\": \"test-send-mail-attachments\", \"formFields\": { \"email\": \"{{TEST_RECIPIENT}}\" } }"
+        }
+      ],
+      "files": [
+        {
+          "name": "files",
+          "value": "files/sent-from-client.pdf"
+        }
+      ]
+    }
+  },
+  {
+    "name": "test-send-mail-attachments-with-body-as-file",
+    "method": "POST",
+    "url": "{{baseurl}}{{basepath}}/record",
+    "headers": {},
+    "tests": [
+      {
+        "type": "res-code",
+        "custom": "",
+        "action": "equal",
+        "value": "200"
+      },
+      {
+        "type": "set-env-var",
+        "custom": "json.id",
+        "action": "setto",
+        "value": "{{lastRecord,local}}"
+      }
+    ],
+    "body": {
+      "type": "formdata",
+      "form": [],
+      "files": [
+        {
+          "name": "files",
+          "value": "files/sent-from-client.pdf"
+        },
+        {
+          "name": "files",
+          "value": "files/body.json"
+        }
+      ]
+    }
+  },
+  {
+    "name": "test-emoji-filter",
+    "method": "POST",
+    "url": "{{baseurl}}{{basepath}}/record",
+    "headers": {},
+    "tests": [
+      {
+        "type": "res-code",
+        "custom": "",
+        "action": "equal",
+        "value": "200"
+      },
+      {
+        "type": "set-env-var",
+        "custom": "json.id",
+        "action": "setto",
+        "value": "{{testEmojiFilterLastRecord,local}}"
+      }
+    ],
+    "body": {
+      "type": "json",
+      "data": {
+        "formId": "emoji-filter",
+        "formFields": {
+          "mail": "{{TEST_RECIPIENT}}",
+          "message": "Hallo Welt 😂123🙈fdg🧠dfg🧔‍♀️ggg🇹🇴123🏁🍥🕧465",
+          "nachricht": "😂123🙈fdg"
+        }
+      },
+      "form": []
+    }
+  },
+  {
+    "name": "wait",
+    "method": "GET",
+    "url": "{{baseurl}}{{basepath}}/tools/wait?ms=5000",
+    "headers": {
+      "x-api-key": "{{x-api-key}}"
+    },
+    "tests": [
+      {
+        "type": "res-code",
+        "custom": "",
+        "action": "equal",
+        "value": "200"
+      }
+    ]
+  },
+  {
+    "name": "test-send-mail-from",
+    "method": "GET",
+    "url": "{{baseurl}}{{basepath}}/record/{{testSendMailFromLastRecord}}",
+    "headers": {
+      "x-api-key": "{{X_API_KEY}}"
+    },
+    "tests": [
+      {
+        "type": "res-code",
+        "custom": "",
+        "action": "equal",
+        "value": "200"
+      },
+      {
+        "type": "json-query",
+        "custom": "json.actions[0].status",
+        "action": "equal",
+        "value": "SUCCESSFUL"
+      },
+      {
+        "type": "json-query",
+        "custom": "json.actions[1].status",
+        "action": "equal",
+        "value": "SUCCESSFUL"
+      },
+      {
+        "type": "json-query",
+        "custom": "json.actions[2].status",
+        "action": "equal",
+        "value": "SUCCESSFUL"
+      }
+    ]
+  },
+  {
+    "name": "test-send-mail-double-opt-in-get-trigger-link",
+    "method": "GET",
+    "url": "{{baseurl}}{{basepath}}/tools/getRecordHashforRecordId/{{testSendMailDoubleOptInLastRecord}}",
+    "headers": {
+      "x-api-key": "{{X_API_KEY}}"
+    },
+    "tests": [
+      {
+        "type": "res-code",
+        "custom": "",
+        "action": "equal",
+        "value": "200"
+      },
+      {
+        "type": "set-env-var",
+        "custom": "json.recordHash",
+        "action": "setto",
+        "value": "{{recordHash, local}}"
+      }
+    ]
+  },
+  {
+    "name": "test-send-mail-double-opt-in-pull-trigger",
+    "method": "GET",
+    "url": "{{baseurl}}{{basepath}}/record/{{testSendMailDoubleOptInLastRecord}}/trigger/{{recordHash}}",
+    "headers": {
+      "x-api-key": "{{X_API_KEY}}"
+    },
+    "tests": [
+      {
+        "type": "res-code",
+        "custom": "",
+        "action": "equal",
+        "value": "200"
+      }
+    ]
+  },
+  {
+    "name": "Start a new ActionWorker",
+    "method": "GET",
+    "url": "{{baseurl}}{{basepath}}/backend/worker",
+    "headers": {
+      "x-api-key": "{{X_API_KEY}}"
+    },
+    "tests": [
+      {
+        "type": "res-code",
+        "custom": "",
+        "action": "equal",
+        "value": "200"
+      }
+    ]
+  },
+  {
+    "name": "get scheduled Tasks",
+    "method": "GET",
+    "url": "{{baseurl}}{{basepath}}/backend/scheduler",
+    "headers": {
+      "x-api-key": "{{X_API_KEY}}"
+    },
+    "tests": [
+      {
+        "type": "res-code",
+        "custom": "",
+        "action": "equal",
+        "value": "200"
+      }
+    ]
+  },
+  {
+    "name": "test-delete-record",
+    "method": "GET",
+    "url": "{{baseurl}}{{basepath}}/record/{{testDeleteLastRecord}}",
+    "headers": {
+      "x-api-key": "{{X_API_KEY}}"
+    },
+    "tests": [
+      {
+        "type": "res-code",
+        "custom": "",
+        "action": "equal",
+        "value": "404"
+      }
+    ]
+  },
+  {
+    "name": "test-modify-data",
+    "method": "GET",
+    "url": "{{baseurl}}{{basepath}}/record/{{testModifyDataRastRecord}}",
+    "headers": {
+      "x-api-key": "{{X_API_KEY}}"
+    },
+    "tests": [
+      {
+        "type": "res-code",
+        "custom": "",
+        "action": "equal",
+        "value": "200"
+      },
+      {
+        "type": "json-query",
+        "custom": "json.actions[0].status",
+        "action": "equal",
+        "value": "SUCCESSFUL"
+      },
+      {
+        "type": "json-query",
+        "custom": "json.record.data.formFields.God",
+        "action": "equal",
+        "value": "jan"
+      },
+      {
+        "type": "json-query",
+        "custom": "json.record.data.controlFields.status",
+        "action": "equal",
+        "value": "readyToDelete"
+      }
+    ]
+  },
+  {
+    "name": "test-get-records-by-form-and-masterkey-a",
+    "method": "GET",
+    "url": "{{baseurl}}{{basepath}}/record?formId=test-get-records-by-form-and-masterkey&masterKey=incredible-secret-masterkey",
+    "headers": {
+      "x-api-key": "{{X_API_KEY}}"
+    },
+    "tests": [
+      {
+        "type": "res-code",
+        "custom": "",
+        "action": "equal",
+        "value": "200"
+      },
+      {
+        "type": "json-query",
+        "custom": "json.records[0].data.formFields.email",
+        "action": "equal",
+        "value": "{{TEST_RECIPIENT}}"
+      }
+    ]
+  },
+  {
+    "name": "wait Copy",
+    "method": "GET",
+    "url": "{{baseurl}}{{basepath}}/tools/wait?ms=5000",
+    "headers": {
+      "x-api-key": "{{X_API_KEY}}"
+    },
+    "tests": [
+      {
+        "type": "res-code",
+        "custom": "",
+        "action": "equal",
+        "value": "200"
+      }
+    ]
+  },
+  {
+    "name": "test-send-mail-double-opt-in-status",
+    "method": "GET",
+    "url": "{{baseurl}}{{basepath}}/record/{{testSendMailDoubleOptInLastRecord}}",
+    "headers": {
+      "x-api-key": "{{X_API_KEY}}"
+    },
+    "tests": [
+      {
+        "type": "res-code",
+        "custom": "",
+        "action": "equal",
+        "value": "200"
+      },
+      {
+        "type": "json-query",
+        "custom": "json.actions[0].status",
+        "action": "equal",
+        "value": "SUCCESSFUL"
+      },
+      {
+        "type": "json-query",
+        "custom": "json.actions[1].status",
+        "action": "equal",
+        "value": "SUCCESSFUL"
+      },
+      {
+        "type": "json-query",
+        "custom": "json.actions[2].status",
+        "action": "equal",
+        "value": "SUCCESSFUL"
+      }
+    ]
+  },
+  {
+    "name": "test-emoji-filter",
+    "method": "GET",
+    "url": "{{baseurl}}{{basepath}}/record/{{testEmojiFilterLastRecord}}",
+    "headers": {
+      "x-api-key": "{{X_API_KEY}}"
+    },
+    "tests": [
+      {
+        "type": "res-code",
+        "custom": "",
+        "action": "equal",
+        "value": "200"
+      },
+      {
+        "type": "json-query",
+        "custom": "json.record.data.formFields.emojiless",
+        "action": "equal",
+        "value": "123fdg"
+      },
+      {
+        "type": "json-query",
+        "custom": "json.record.data.formFields.emojiless1",
+        "action": "equal",
+        "value": "Hallo Welt 123fdgdfgggg123465"
+      }
+    ]
+  }
+]
