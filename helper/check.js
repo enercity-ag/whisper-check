@@ -1,4 +1,5 @@
 import axios from 'axios';
+import https from 'https';
 import handlebars from 'handlebars';
 import evaluateExpression from './evaluateExpression.js';
 import fs from 'fs';
@@ -29,11 +30,17 @@ async function check(args) {
   const waitBetweenRequests = args['wait-between-requests'] ? parseInt(args['wait-between-requests']) : 0;
   const displayResponse = args['display-response'];
   const repeat = args['repeat'] || 1;
-
+  const insecure = args['insecure'];
   const collection = args.collection;
   const config = await loadJson(collection);
   const basedir = path.dirname(collection);
   const env = await loadEnvironment(args);
+
+  const instance = axios.create({
+    httpsAgent: new https.Agent({
+      rejectUnauthorized: !insecure,
+    }),
+  });
 
   let isGlobalError = false;
   let failCount = 0;
@@ -108,7 +115,7 @@ async function check(args) {
         }
         const startTime = Date.now();
         try {
-          response = await axios(config);
+          response = await instance(config);
         } catch (error) {
           if (error.response) {
             response = error.response;

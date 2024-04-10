@@ -69,6 +69,11 @@ yargs(hideBin(process.argv))
             type: 'number',
             default: 1,
           },
+          insecure: {
+            describe: 'Allow insecure server connections when using SSL.',
+            type: 'boolean',
+            default: false,
+          },
         });
     },
     function (argv) {
