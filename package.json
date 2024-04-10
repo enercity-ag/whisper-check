@@ -5,7 +5,7 @@
   "main": "src/index.js",
   "scripts": {
     "convert": "node index.js convert \"./demo-data/tc_col_fulltest.json\" \"./demo-data/collection.json\"",
-    "check": "node index.js check \"./demo-data/collection.json\" --envFile \"./demo-data/collection.json\" ",
+    "check": "node index.js check \"./demo-data/collection.json\" --envFile \"./demo-data/environment.json\" ",
     "check:multiple": "node index.js check \"./demo-data/collection.json\" --envFile \"./demo-data/environment.json\" --multiple-choice"
   },
   "bin": {
