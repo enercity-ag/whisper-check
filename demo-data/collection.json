@@ -911,5 +911,19 @@
         "value": "Hallo Welt 123fdgdfgggg123465"
       }
     ]
+  },
+  {
+    "name": "google.de",
+    "method": "GET",
+    "url": "https://google.de",
+    "headers": {},
+    "tests": [
+      {
+        "type": "res-code",
+        "custom": "",
+        "action": "regex",
+        "value": "20.*"
+      }
+    ]
   }
 ]
