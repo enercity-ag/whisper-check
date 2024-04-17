@@ -141,6 +141,12 @@ async function check(args) {
                       localErrorMsg = `response code ${response.status} not equal ${test.value}`;
                     }
                     break;
+                  case 'regex':
+                    if (!(new RegExp(test.value).test(response.status))) {
+                      isLocalError = true;
+                      localErrorMsg = `response code ${response.status} does not match ${test.value}`;
+                    }
+                    break;
                   default:
                     isLocalError = true;
                     localErrorMsg = 'unknown action: ' + test.action;
@@ -163,8 +169,7 @@ async function check(args) {
           `${isLocalError ? `\x1b[31mFAIL\x1b[0m` : '\x1b[32mOK\x1b[0m  '} ${fixedLengthString(
             name,
             60
-          )} ${fixedLengthString(method, 5)} ${`${Date.now() - startTime}`.padStart(5, ' ')} ms ${
-            isLocalError ? ` \x1b[31mERROR ${localErrorMsg}\x1b[0m` : ''
+          )} ${fixedLengthString(method, 5)} ${`${Date.now() - startTime}`.padStart(5, ' ')} ms ${isLocalError ? ` \x1b[31mERROR ${localErrorMsg}\x1b[0m` : ''
           }`
         );
 

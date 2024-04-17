@@ -23,6 +23,8 @@ function evaluateExpression(operator, left, right) {
       return left || right;
     case '??':
       return left ?? right;
+    case 'regex':
+      return new RegExp(right).test(left);
     default:
       throw new Error(`Unknown operator: ${operator}`);
   }
