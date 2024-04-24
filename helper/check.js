@@ -80,7 +80,7 @@ async function check(args) {
           url,
           method,
           headers: JSON.parse(handlebars.compile(JSON.stringify(request.headers), { noEscape: true })(env)),
-          maxRedirects: request.maxRedirects || 5,
+          maxRedirects: isNaN(request.maxRedirects) ? undefined : request.maxRedirects,
         };
 
         let response;
