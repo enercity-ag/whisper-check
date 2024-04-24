@@ -80,6 +80,7 @@ async function check(args) {
           url,
           method,
           headers: JSON.parse(handlebars.compile(JSON.stringify(request.headers), { noEscape: true })(env)),
+          maxRedirects: request.maxRedirects || 5,
         };
 
         let response;
@@ -142,7 +143,7 @@ async function check(args) {
                     }
                     break;
                   case 'regex':
-                    if (!(new RegExp(test.value).test(response.status))) {
+                    if (!new RegExp(test.value).test(response.status)) {
                       isLocalError = true;
                       localErrorMsg = `response code ${response.status} does not match ${test.value}`;
                     }
@@ -169,7 +170,8 @@ async function check(args) {
           `${isLocalError ? `\x1b[31mFAIL\x1b[0m` : '\x1b[32mOK\x1b[0m  '} ${fixedLengthString(
             name,
             60
-          )} ${fixedLengthString(method, 5)} ${`${Date.now() - startTime}`.padStart(5, ' ')} ms ${isLocalError ? ` \x1b[31mERROR ${localErrorMsg}\x1b[0m` : ''
+          )} ${fixedLengthString(method, 5)} ${`${Date.now() - startTime}`.padStart(5, ' ')} ms ${
+            isLocalError ? ` \x1b[31mERROR ${localErrorMsg}\x1b[0m` : ''
           }`
         );
 
