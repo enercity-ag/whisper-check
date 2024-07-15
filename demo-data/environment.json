@@ -1,5 +1,10 @@
 {
-  "local": {
+  "local (dbrestroot)": {
+    "baseurl": "http://localhost:3000",
+    "basepath": "",
+    "x-api-key": "{{X_API_KEY_LOCAL}}"
+  },
+  "local (formapi)": {
     "baseurl": "http://localhost:3010",
     "basepath": "/my-api",
     "x-api-key": "{{X_API_KEY_LOCAL}}"

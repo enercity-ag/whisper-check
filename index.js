@@ -43,7 +43,7 @@ yargs(hideBin(process.argv))
           'multiple-choice': {
             alias: 'm',
             describe:
-              'Prompt for request which should be executed. Warning - choosing this option disables dhe --request option.',
+              'Prompt for request which should be executed. Warning - choosing this option disables the --request option.',
             type: 'boolean',
             default: false,
           },
@@ -54,7 +54,7 @@ yargs(hideBin(process.argv))
           },
           'stop-on-failure': {
             describe: 'Stops executing requests after first failure.',
-            type: 'boolean',
+            type: 'number',
             default: 0,
           },
           'display-response': {
@@ -71,6 +71,12 @@ yargs(hideBin(process.argv))
           },
           insecure: {
             describe: 'Allow insecure server connections when using SSL.',
+            type: 'boolean',
+            default: false,
+          },
+          'verbose-results': {
+            alias: 'v',
+            describe: 'Prints additional information for each request',
             type: 'boolean',
             default: false,
           },

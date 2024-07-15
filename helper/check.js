@@ -31,6 +31,7 @@ async function check(args) {
   const displayResponse = args['display-response'];
   const repeat = args['repeat'] || 1;
   const insecure = args['insecure'];
+  const verboseResults = args['verbose-results'];
   const collection = args.collection;
   const config = await loadJson(collection);
   const basedir = path.dirname(collection);
@@ -174,6 +175,25 @@ async function check(args) {
             isLocalError ? ` \x1b[31mERROR ${localErrorMsg}\x1b[0m` : ''
           }`
         );
+        if (isLocalError || verboseResults) {
+          console.log(
+            `\x1b[33mVerbose: {\x1b[0m\n` +
+              `   \x1b[33mURL\x1b[0m:         ${request.url}\n` +
+              `   \x1b[33mMethode\x1b[0m:     ${request.method}\n` +
+              `   \x1b[33mBody\x1b[0m:        ${
+                request.body
+                  ? JSON.parse(handlebars.compile(JSON.stringify(request.body), { noEscape: true })(env))
+                  : `-`
+              }\n` +
+              `   \x1b[33mStatus\x1b[0m:      ${response.status}\n` +
+              `   \x1b[33mRes. Header\x1b[0m: ${response.headers.toString().replaceAll(`\n`, `; `)}\n` +
+              `   \x1b[33mRes. Body\x1b[0m:   ${
+                response.data
+                  ? JSON.parse(handlebars.compile(JSON.stringify(response.data), { noEscape: true })(env))
+                  : `-`
+              }\n\x1b[33m}\x1b[0m\n`
+          );
+        }
 
         if ((requestsFilter && (!Array.isArray(requestsFilter) || requestsFilter?.length == 1)) || displayResponse) {
           console.log('\x1b[36m........ Request ............... . . .  .  .   .   .    .    .\x1b[0m');
