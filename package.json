@@ -19,11 +19,11 @@
     "registry": "https://npm.pkg.github.com/"
   },
   "dependencies": {
-    "axios": "^1.7.2",
+    "axios": "^1.7.7",
     "envfile": "^7.1.0",
     "form-data": "^4.0.0",
     "handlebars": "^4.7.8",
-    "inquirer": "^9.3.2",
+    "inquirer": "^11.1.0",
     "install": "^0.13.0",
     "yargs": "^17.7.2"
   },
