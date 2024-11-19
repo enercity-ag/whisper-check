@@ -1,5 +1,7 @@
 # WhisperCheck
 
+![logo](docs/assets/Ghost-256.webp)
+
 _WhisperCheck_ is an cli based alternative for the ThunderClient. WhisperCheck imports environments and collections created with ThunderClient.
 
 _WhisperCheck_ can convert request collections created whith ThunderClient.
